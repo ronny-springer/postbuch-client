@@ -1,24 +1,15 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import { hydrate, render } from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 
-import { Inbox, Outbox, Trash, FourOhFour } from "./pages";
+import Router from "./Router";
 
 const wayToRender = module.hot ? render : hydrate;
 wayToRender(
-  <React.StrictMode>
-    <Router>
-      <Switch>
-        <Route exact path="/inbox" component={Inbox} />
-        <Route exact path="/outbox" component={Outbox} />
-        <Route exact path="/trash" component={Trash} />
-
-        <Route path="*" component={FourOhFour} />
-      </Switch>
-    </Router>
-  </React.StrictMode>,
+  <StrictMode>
+    <Router />
+  </StrictMode>,
   document.getElementById("root")
 );
 

@@ -12,13 +12,17 @@ const Inbox = () => {
       className="row overflow-hidden"
       style={{ width: "100vw", height: "100vh" }}
     >
-      <div className="col-2">
+      <div className="col-auto">
         <Navigation />
       </div>
       <div className="col">
-        <main style={{ paddingTop: "124px" }}>
-          <InboxForm inbox={inbox} onSave={setInbox} />
-          <InboxList inbox={inbox} />
+        <main>
+          <div style={{ paddingTop: "112px" }}>
+            <InboxForm inbox={inbox} onSave={setInbox} />
+          </div>
+          <div className="mt-3" style={{ height: "100vh", overflowX: "auto" }}>
+            <InboxList inbox={inbox} />
+          </div>
         </main>
       </div>
     </div>

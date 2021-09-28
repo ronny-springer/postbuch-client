@@ -2,39 +2,31 @@ import React, { useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 
 const InboxForm = ({ inbox = [], onSave }) => {
-  console.log("inbox", inbox.length);
-
   const defaultValues = {
-    nummer: inbox.length,
+    nummer: inbox.length || 0,
     datum: new Date(Date.now()).toLocaleDateString("de-de"),
     absender: "",
     betreff: "",
     anmerkung: "",
   };
-  console.log(defaultValues);
   const [inputFields, setInputFields] = useState(defaultValues);
 
   return (
-    <div className="row px-4 py-1">
-      <div className="col-md-1">
+    <div className="row">
+      <div className="col-1">
         <div className="form-floating">
           <input
             type="text"
             className="form-control"
             id="nummer"
-            // value={inbox.length}
-            value={
-              console.log("value", inputFields.nummer) || inputFields.nummer
-            }
-            onChange={() => {
-              console.log("change");
-            }}
+            readOnly
+            value={inputFields.nummer}
           />
           <label htmlFor="nummer">#</label>
         </div>
       </div>
 
-      <div className="col-md-2">
+      <div className="col-2">
         <div className="form-floating">
           <input
             type="text"
@@ -50,7 +42,7 @@ const InboxForm = ({ inbox = [], onSave }) => {
         </div>
       </div>
 
-      <div className="col-md-3">
+      <div className="col-3">
         <div className="form-floating">
           <input
             type="text"
@@ -65,11 +57,11 @@ const InboxForm = ({ inbox = [], onSave }) => {
               });
             }}
           />
-          <label htmlFor="absender">Absender</label>
+          <label htmlFor="absender">Absender/Firma</label>
         </div>
       </div>
 
-      <div className="col-md-3">
+      <div className="col-3">
         <div className="form-floating">
           <input
             type="text"
@@ -88,7 +80,7 @@ const InboxForm = ({ inbox = [], onSave }) => {
         </div>
       </div>
 
-      <div className="col-md-2">
+      <div className="col-2">
         <div className="form-floating">
           <input
             type="text"
@@ -106,18 +98,17 @@ const InboxForm = ({ inbox = [], onSave }) => {
         </div>
       </div>
 
-      <div className="col-md-1">
+      <div className="col-1">
         <button
           type="button"
           className="btn btn-primary btn-lg"
-          style={{ height: "56px" }}
+          style={{ height: "58px" }}
           id="submitInputFields"
           onClick={(event) => {
             event.preventDefault();
 
-            console.log(inputFields);
             onSave([inputFields, ...inbox]);
-            // setInputFields(defaultValues);
+            setInputFields(defaultValues);
           }}
         >
           <AiOutlineCheckCircle />

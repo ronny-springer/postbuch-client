@@ -7,7 +7,7 @@ const Outbox = () => {
       className="row overflow-hidden"
       style={{ width: "100vw", height: "100vh" }}
     >
-      <div className="col-2">
+      <div className="col-auto">
         <Navigation />
       </div>
       <div className="col">

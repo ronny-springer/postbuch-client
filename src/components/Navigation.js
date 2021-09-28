@@ -15,12 +15,12 @@ const Navigation = () => {
   return (
     <nav
       className="bg-light position-relative pt-4"
-      style={{ height: "100vh" }}
+      style={{ height: "100vh", width: "240px" }}
     >
       <h1 className="position-relative ps-3 pe-3">
         <span
           className="position-absolute"
-          style={{ right: "0", top: "-15px" }}
+          style={{ right: "10px", top: "-15px" }}
         >
           <GiPostStamp />
         </span>

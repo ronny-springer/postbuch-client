@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import inboxData from "./Inbox.data.json";
 import { Navigation, InboxForm, InboxList } from "../components";
 
 const Inbox = () => {
-  const [inbox, setInbox] = useState([]);
+  const [inbox, setInbox] = useState(inboxData);
   console.log(inbox);
 
   return (
@@ -20,7 +21,7 @@ const Inbox = () => {
           <div style={{ paddingTop: "112px" }}>
             <InboxForm inbox={inbox} onSave={setInbox} />
           </div>
-          <div className="mt-3" style={{ height: "100vh", overflowX: "auto" }}>
+          <div className="mt-3" style={{ height: "72vh", overflowX: "auto" }}>
             <InboxList inbox={inbox} />
           </div>
         </main>

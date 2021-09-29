@@ -1,0 +1,23 @@
+[
+  {
+    "id": 2,
+    "datum": "27.9.2021",
+    "absender": "John Doe",
+    "betreff": "Rechnung",
+    "anmerkung": "Test"
+  },
+  {
+    "id": 1,
+    "datum": "27.9.2021",
+    "absender": "Muster Firma",
+    "betreff": "allgemeiner Brief",
+    "anmerkung": ""
+  },
+  {
+    "id": 0,
+    "datum": "26.9.2021",
+    "absender": "Max Muster",
+    "betreff": "Musterbrief",
+    "anmerkung": ""
+  }
+]

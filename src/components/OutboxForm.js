@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 
-const InboxForm = ({ inbox = [], onSave }) => {
+function getPreis(sendung) {
+  if (sendung === "Standardbrief") return 0.8;
+  if (sendung === "Maxibrief") return 0.95;
+  if (sendung === "Einschreiben") return 3.1;
+  if (sendung === "Expressbrief") return 11.9;
+  if (sendung === "Infosendung") return 0.35;
+  if (sendung === "Postkarte") return 0.6;
+  if (sendung === "Bote") return 0.0;
+
+  return 0.0;
+}
+
+const OutboxForm = ({ outbox = [], onSave }) => {
   const [inputFields, setInputFields] = useState([]);
 
   const defaultValues = {
-    id: inbox.length,
+    id: outbox.length,
     datum: new Date(Date.now()).toLocaleDateString("de-de"),
-    absender: "",
-    betreff: "Anfrage",
-    anmerkung: "",
+    empfänger: "",
+    betreff: "",
+    sendung: "Standardbrief",
+    preis: "",
   };
 
   useEffect(() => {
@@ -53,62 +66,72 @@ const InboxForm = ({ inbox = [], onSave }) => {
           <input
             type="text"
             className="form-control"
-            id="absender"
-            value={inputFields.absender}
+            id="empfänger"
+            value={inputFields.empfänger}
             onChange={(event) => {
               setInputFields({
                 ...inputFields,
-                absender: event.target.value,
+                empfänger: event.target.value,
               });
             }}
           />
-          <label htmlFor="absender">Absender/Firma</label>
+          <label htmlFor="empfänger">Empfänger/Firma</label>
         </div>
       </div>
 
       <div className="col-3">
         <div className="form-floating">
-          <select
-            className="form-select"
+          <input
+            type="text"
+            className="form-control"
             id="betreff"
-            aria-label="Betreff"
-            defaultValue={inputFields.betreff}
+            value={inputFields.betreff}
             onChange={(event) => {
               setInputFields({
                 ...inputFields,
                 betreff: event.target.value,
               });
             }}
-          >
-            <option value="Anfrage">Anfrage</option>
-            <option value="Angebot">Angebot</option>
-            <option value="Bestätigung">Bestätigung</option>
-            <option value="Rechnung">Rechnung</option>
-            <option value="Mahnung">Mahnung</option>
-            <option value="Bescheid">Bescheid</option>
-            <option value="Widerspruch">Widerspruch</option>
-            <option value="Werbebrief">Werbebrief</option>
-            <option value="persönlicher Brief">persönlicher Brief</option>
-          </select>
+          />
           <label htmlFor="betreff">Betreff</label>
         </div>
       </div>
 
       <div className="col-2">
-        <div className="form-floating">
-          <input
-            type="text"
-            className="form-control"
-            id="anmerkung"
-            value={inputFields.anmerkung}
-            onChange={(event) => {
-              setInputFields({
-                ...inputFields,
-                anmerkung: event.target.value,
-              });
-            }}
-          />
-          <label htmlFor="anmerkung">Anmerkung</label>
+        <div class="input-group">
+          <div className="form-floating">
+            <select
+              className="form-select"
+              id="sendung"
+              aria-label="Sendung"
+              defaultValue={inputFields.sendung}
+              onChange={(event) => {
+                setInputFields({
+                  ...inputFields,
+                  sendung: event.target.value,
+                });
+              }}
+            >
+              <option value="Standardbrief">Standardbrief</option>
+              <option value="Maxibrief">Maxibrief</option>
+              <option value="Einschreiben">Einschreiben</option>
+              <option value="Expressbrief">Expressbrief</option>
+              <option value="Infosendung">Infosendung</option>
+              <option value="Postkarte">Postkarte</option>
+              <option value="Bote">Bote</option>
+            </select>
+            <label htmlFor="sendung">Sendung</label>
+          </div>
+          <span
+            class="input-group-text"
+            style={{ width: "74px", marginLeft: "-4px", paddingTop: "22px" }}
+          >
+            {getPreis(inputFields.sendung).toLocaleString("de-DE", {
+              style: "currency",
+              currency: "EUR",
+              minimumFractionDigits: 2,
+            })}
+          </span>
         </div>
       </div>
 
@@ -120,7 +143,10 @@ const InboxForm = ({ inbox = [], onSave }) => {
           id="submitInputFields"
           onClick={(event) => {
             event.preventDefault();
-            onSave([inputFields, ...inbox]);
+            onSave([
+              { ...inputFields, preis: getPreis(inputFields.sendung) },
+              ...outbox,
+            ]);
             setInputFields({ ...inputFields, id: inputFields.id + 1 });
           }}
         >
@@ -131,4 +157,4 @@ const InboxForm = ({ inbox = [], onSave }) => {
   );
 };
 
-export default InboxForm;
+export default OutboxForm;

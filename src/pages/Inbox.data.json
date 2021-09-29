@@ -16,14 +16,14 @@
   {
     "id": 1,
     "datum": "26.9.2021",
-    "absender": "Max Muster",
+    "absender": "Max Mustermann",
     "betreff": "Anfrage",
     "anmerkung": ""
   },
   {
     "id": 0,
     "datum": "26.9.2021",
-    "absender": "Max Muster",
+    "absender": "Max Mustermann",
     "betreff": "persönlicher Brief",
     "anmerkung": "Bürgermeister"
   }

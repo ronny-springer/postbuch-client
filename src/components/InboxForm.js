@@ -67,18 +67,27 @@ const InboxForm = ({ inbox = [], onSave }) => {
 
       <div className="col-3">
         <div className="form-floating">
-          <input
-            type="text"
-            className="form-control"
+          <select
+            class="form-select"
             id="betreff"
-            value={inputFields.betreff}
+            aria-label="Betreff"
             onChange={(event) => {
               setInputFields({
                 ...inputFields,
                 betreff: event.target.value,
               });
             }}
-          />
+          >
+            <option value="Anfrage" selected>
+              Anfrage
+            </option>
+            <option value="Angebot">Angebot</option>
+            <option value="Bestätigung">Bestätigung</option>
+            <option value="Rechnung">Rechnung</option>
+            <option value="Mahnung">Mahnung</option>
+            <option value="Werbebrief">Werbebrief</option>
+            <option value="persönlicher Brief">persönlicher Brief</option>
+          </select>
           <label htmlFor="betreff">Betreff</label>
         </div>
       </div>

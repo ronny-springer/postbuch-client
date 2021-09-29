@@ -98,7 +98,7 @@ const OutboxForm = ({ outbox = [], onSave }) => {
       </div>
 
       <div className="col-2">
-        <div class="input-group">
+        <div className="input-group">
           <div className="form-floating">
             <select
               className="form-select"
@@ -123,7 +123,7 @@ const OutboxForm = ({ outbox = [], onSave }) => {
             <label htmlFor="sendung">Sendung</label>
           </div>
           <span
-            class="input-group-text"
+            className="input-group-text"
             style={{ width: "74px", marginLeft: "-4px", paddingTop: "22px" }}
           >
             {getPreis(inputFields.sendung).toLocaleString("de-DE", {

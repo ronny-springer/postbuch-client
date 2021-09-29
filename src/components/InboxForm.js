@@ -27,6 +27,7 @@ const InboxForm = ({ inbox = [], onSave }) => {
             id="id"
             readOnly
             value={inputFields.id}
+            onChange={() => {}}
           />
           <label htmlFor="id">#</label>
         </div>
@@ -68,9 +69,10 @@ const InboxForm = ({ inbox = [], onSave }) => {
       <div className="col-3">
         <div className="form-floating">
           <select
-            class="form-select"
+            className="form-select"
             id="betreff"
             aria-label="Betreff"
+            defaultValue={inputFields.betreff}
             onChange={(event) => {
               setInputFields({
                 ...inputFields,
@@ -78,9 +80,7 @@ const InboxForm = ({ inbox = [], onSave }) => {
               });
             }}
           >
-            <option value="Anfrage" selected>
-              Anfrage
-            </option>
+            <option value="Anfrage">Anfrage</option>
             <option value="Angebot">Angebot</option>
             <option value="Bestätigung">Bestätigung</option>
             <option value="Rechnung">Rechnung</option>

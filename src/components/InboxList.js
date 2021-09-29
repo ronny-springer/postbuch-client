@@ -26,10 +26,10 @@ const InboxList = ({ inbox = [] }) => {
             <div className="col-3 pe-3">
               <Text text={absender} />
             </div>
-            <div className="col-3 ps-4 pe-4">
+            <div className="col-3 ps-4">
               <Text text={betreff} />
             </div>
-            <div className="col-2 ps-4 pe-4">
+            <div className="col-2 ps-4">
               <Text text={anmerkung} />
             </div>
           </div>

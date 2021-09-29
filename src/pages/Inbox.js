@@ -38,7 +38,7 @@ const Inbox = () => {
               </div>
               <div className="col-6">
                 <div className="input-group">
-                  <span class="input-group-text">
+                  <span className="input-group-text">
                     <AiOutlineSearch />
                   </span>
                   <input

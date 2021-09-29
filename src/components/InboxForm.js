@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 
 const InboxForm = ({ inbox = [], onSave }) => {
+  const [inputFields, setInputFields] = useState([]);
+
   const defaultValues = {
-    nummer: inbox.length || 0,
+    id: inbox.length,
     datum: new Date(Date.now()).toLocaleDateString("de-de"),
     absender: "",
     betreff: "",
     anmerkung: "",
   };
-  const [inputFields, setInputFields] = useState(defaultValues);
+
+  useEffect(() => {
+    setInputFields(defaultValues);
+    return null;
+  }, []);
 
   return (
     <div className="row">
@@ -18,11 +24,11 @@ const InboxForm = ({ inbox = [], onSave }) => {
           <input
             type="text"
             className="form-control"
-            id="nummer"
+            id="id"
             readOnly
-            value={inputFields.nummer}
+            value={inputFields.id}
           />
-          <label htmlFor="nummer">#</label>
+          <label htmlFor="id">#</label>
         </div>
       </div>
 
@@ -32,7 +38,6 @@ const InboxForm = ({ inbox = [], onSave }) => {
             type="text"
             className="form-control"
             id="datum"
-            required
             value={inputFields.datum}
             onChange={(event) => {
               setInputFields({ ...inputFields, datum: event.target.value });
@@ -48,7 +53,6 @@ const InboxForm = ({ inbox = [], onSave }) => {
             type="text"
             className="form-control"
             id="absender"
-            required
             value={inputFields.absender}
             onChange={(event) => {
               setInputFields({
@@ -67,7 +71,6 @@ const InboxForm = ({ inbox = [], onSave }) => {
             type="text"
             className="form-control"
             id="betreff"
-            required
             value={inputFields.betreff}
             onChange={(event) => {
               setInputFields({
@@ -100,15 +103,14 @@ const InboxForm = ({ inbox = [], onSave }) => {
 
       <div className="col-1">
         <button
-          type="button"
+          type="submit"
           className="btn btn-primary btn-lg"
           style={{ height: "58px" }}
           id="submitInputFields"
           onClick={(event) => {
             event.preventDefault();
-
             onSave([inputFields, ...inbox]);
-            setInputFields(defaultValues);
+            setInputFields({ ...inputFields, id: inputFields.id + 1 });
           }}
         >
           <AiOutlineCheckCircle />

@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { AiOutlineSearch } from "react-icons/ai";
 
 import inboxData from "./Inbox.data.json";
 import { Navigation, InboxForm, InboxList } from "../components";
 
 const Inbox = () => {
   const [inbox, setInbox] = useState(inboxData);
-  console.log(inbox);
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    if (query.length) {
+      const result = inbox.filter(({ absender }) =>
+        absender.toLowerCase().startsWith(query.toLowerCase())
+      );
+      setInbox(result);
+    } else {
+      setInbox(inboxData);
+    }
+  }, [query]);
 
   return (
     <div
@@ -18,7 +30,33 @@ const Inbox = () => {
       </div>
       <div className="col">
         <main>
-          <div style={{ paddingTop: "112px" }}>
+          <div style={{ paddingTop: "32px" }}>
+            <div className="row">
+              <div className="col-3">
+                <h2>Eingang</h2>
+              </div>
+              <div className="col-6">
+                <div className="input-group">
+                  <span class="input-group-text">
+                    <AiOutlineSearch />
+                  </span>
+                  <input
+                    type="search"
+                    className="form-control"
+                    placeholder="Suche"
+                    aria-label="Suche"
+                    aria-describedby="search-addon"
+                    value={query}
+                    onChange={(event) => {
+                      setQuery(event.target.value);
+                      console.log(query);
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style={{ paddingTop: "32px" }}>
             <InboxForm inbox={inbox} onSave={setInbox} />
           </div>
           <div className="mt-3" style={{ height: "72vh", overflowX: "auto" }}>

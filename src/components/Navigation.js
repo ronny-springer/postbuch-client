@@ -3,11 +3,7 @@ import { useLocation } from "react-router-dom";
 import cx from "classnames";
 
 import { GiPostStamp } from "react-icons/gi";
-import {
-  AiOutlineInbox,
-  AiOutlineIdcard,
-  AiOutlineDelete,
-} from "react-icons/ai";
+import { AiOutlineInbox, AiOutlineIdcard } from "react-icons/ai";
 
 const Navigation = () => {
   const { pathname } = useLocation();
@@ -51,20 +47,6 @@ const Navigation = () => {
           >
             <AiOutlineIdcard className="me-3" />
             Ausgang
-          </a>
-        </li>
-
-        <li className="nav-item ps-3 pe-3" style={{ lineHeight: "26px" }}>
-          <a
-            href="/trash"
-            role="button"
-            className={cx([
-              "nav-link",
-              pathname === "/trash" ? "active" : "link-dark",
-            ])}
-          >
-            <AiOutlineDelete className="me-3" />
-            Papierkorb
           </a>
         </li>
       </ul>

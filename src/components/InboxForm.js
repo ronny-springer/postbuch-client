@@ -8,7 +8,7 @@ const InboxForm = ({ inbox = [], onSave }) => {
     id: inbox.length,
     datum: new Date(Date.now()).toLocaleDateString("de-de"),
     absender: "",
-    betreff: "",
+    betreff: "Anfrage",
     anmerkung: "",
   };
 

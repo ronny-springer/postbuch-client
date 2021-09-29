@@ -11,8 +11,9 @@ const Inbox = () => {
 
   useEffect(() => {
     if (query.length) {
-      const result = inbox.filter(({ absender }) =>
-        absender.toLowerCase().startsWith(query.toLowerCase())
+      const result = inbox.filter(
+        ({ absender }) =>
+          absender.toLowerCase().indexOf(query.toLowerCase()) >= 0
       );
       setInbox(result);
     } else {
@@ -49,7 +50,6 @@ const Inbox = () => {
                     value={query}
                     onChange={(event) => {
                       setQuery(event.target.value);
-                      console.log(query);
                     }}
                   />
                 </div>

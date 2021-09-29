@@ -2,7 +2,16 @@ import React from "react";
 import Text from "./Text";
 
 const InboxList = ({ inbox = [] }) => {
-  return inbox.length > 0 ? (
+  if (!inbox.length)
+    return (
+      <div className="card">
+        <p className="card-body alert alert-light">
+          Keine Posteinträge gefunden.
+        </p>
+      </div>
+    );
+
+  return (
     <div className="card">
       {inbox.map(({ id, datum, absender, betreff, anmerkung }) => (
         <div
@@ -27,7 +36,7 @@ const InboxList = ({ inbox = [] }) => {
         </div>
       ))}
     </div>
-  ) : null;
+  );
 };
 
 export default InboxList;

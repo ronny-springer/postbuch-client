@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 
-const InboxForm = ({ inbox = [], onSave }) => {
-  const [inputFields, setInputFields] = useState([]);
+const InboxForm = ({ inbox = [], config = {}, onSave }) => {
+  const { letter = [], groups = [], users = [] } = config;
+  const [checkedUsers, setCheckedUsers] = useState(false);
+  const currentCounter = inbox.length
+    ? Math.max(...inbox.map(({ counter }) => counter)) + 1
+    : 0;
 
   const defaultValues = {
-    id: inbox.length,
+    id: String(Date.now()),
+    counter: currentCounter,
     datum: new Date(Date.now()).toLocaleDateString("de-de"),
     absender: "",
-    betreff: "Anfrage",
-    anmerkung: "",
+    type: letter[0].name,
+    recipient: groups[0].name,
+    isDisabled: false,
   };
-
-  useEffect(() => {
-    setInputFields(defaultValues);
-    return null;
-  }, []);
+  const [inputFields, setInputFields] = useState(defaultValues);
 
   return (
     <div className="row">
@@ -24,12 +26,17 @@ const InboxForm = ({ inbox = [], onSave }) => {
           <input
             type="text"
             className="form-control"
-            id="id"
+            id="counter"
             readOnly
-            value={inputFields.id}
-            onChange={() => {}}
+            value={inputFields.counter}
           />
-          <label htmlFor="id">#</label>
+          <label
+            className="text-truncate"
+            style={{ width: "100%" }}
+            htmlFor="counter"
+          >
+            #
+          </label>
         </div>
       </div>
 
@@ -44,7 +51,13 @@ const InboxForm = ({ inbox = [], onSave }) => {
               setInputFields({ ...inputFields, datum: event.target.value });
             }}
           />
-          <label htmlFor="datum">Datum</label>
+          <label
+            className="text-truncate"
+            style={{ width: "100%" }}
+            htmlFor="datum"
+          >
+            Datum
+          </label>
         </div>
       </div>
 
@@ -62,54 +75,150 @@ const InboxForm = ({ inbox = [], onSave }) => {
               });
             }}
           />
-          <label htmlFor="absender">Absender/Firma</label>
+          <label
+            className="text-truncate"
+            style={{ width: "100%" }}
+            htmlFor="absender"
+          >
+            Absender/Firma
+          </label>
         </div>
       </div>
+
+      {letter.length && (
+        <div className="col-2">
+          <div className="form-floating">
+            <select
+              className="form-select"
+              id="type"
+              aria-label="Brieftyp"
+              defaultValue={letter[0].name}
+              onChange={(event) => {
+                setInputFields({
+                  ...inputFields,
+                  type: event.target.value,
+                });
+              }}
+            >
+              {letter
+                .sort((a, b) => {
+                  return a.name.localeCompare(b.name);
+                })
+                .map(({ id, name }) => {
+                  return (
+                    <option
+                      key={`type-option-${id}`}
+                      className="p-1"
+                      value={name}
+                    >
+                      {name}
+                    </option>
+                  );
+                })}
+            </select>
+            <label
+              className="text-truncate"
+              style={{ width: "90%" }}
+              htmlFor="type"
+            >
+              Brieftyp
+            </label>
+          </div>
+        </div>
+      )}
 
       <div className="col-3">
-        <div className="form-floating">
-          <select
-            className="form-select"
-            id="betreff"
-            aria-label="Betreff"
-            defaultValue={inputFields.betreff}
-            onChange={(event) => {
-              setInputFields({
-                ...inputFields,
-                betreff: event.target.value,
-              });
-            }}
-          >
-            <option value="Anfrage">Anfrage</option>
-            <option value="Angebot">Angebot</option>
-            <option value="Bestätigung">Bestätigung</option>
-            <option value="Rechnung">Rechnung</option>
-            <option value="Mahnung">Mahnung</option>
-            <option value="Bescheid">Bescheid</option>
-            <option value="Widerspruch">Widerspruch</option>
-            <option value="Werbebrief">Werbebrief</option>
-            <option value="persönlicher Brief">persönlicher Brief</option>
-          </select>
-          <label htmlFor="betreff">Betreff</label>
-        </div>
-      </div>
-
-      <div className="col-2">
-        <div className="form-floating">
-          <input
-            type="text"
-            className="form-control"
-            id="anmerkung"
-            value={inputFields.anmerkung}
-            onChange={(event) => {
-              setInputFields({
-                ...inputFields,
-                anmerkung: event.target.value,
-              });
-            }}
-          />
-          <label htmlFor="anmerkung">Anmerkung</label>
-        </div>
+        {(users.length || groups.length) && (
+          <div className="d-flex">
+            <span className="input-group-text">
+              <div
+                className="form-check form-switch"
+                style={{
+                  position: "relative",
+                  paddingRight: "2rem",
+                  height: "42px",
+                }}
+              >
+                <input
+                  style={{ position: "absolute", top: "20px" }}
+                  className="form-check-input"
+                  type="checkbox"
+                  id="switchRecipientTyp"
+                  onChange={(event) => {
+                    setCheckedUsers(event.target.checked);
+                  }}
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="switchRecipientTyp"
+                  style={{
+                    position: "absolute",
+                    left: "-6px",
+                    opacity: ".65",
+                    paddingTop: "6px",
+                    transform:
+                      "scale(.85) translateY(-.5rem) translateX(.15rem)",
+                  }}
+                >
+                  Amt/Person
+                </label>
+              </div>
+            </span>
+            <div className="form-floating flew-grow-1">
+              <select
+                className="form-select"
+                id="recipient"
+                aria-label="Empfänger"
+                value={inputFields.recipient}
+                onChange={(event) => {
+                  setInputFields({
+                    ...inputFields,
+                    recipient: event.target.value,
+                  });
+                }}
+              >
+                {checkedUsers
+                  ? users
+                      .sort((a, b) => {
+                        return a.name.localeCompare(b.name);
+                      })
+                      .map(({ id, name }) => {
+                        return (
+                          <option
+                            key={`recipient-option-user-${id}`}
+                            className="p-1"
+                            value={name}
+                          >
+                            {name}
+                          </option>
+                        );
+                      })
+                  : groups
+                      .sort((a, b) => {
+                        return a.name.localeCompare(b.name);
+                      })
+                      .map(({ id, name }) => {
+                        return (
+                          <option
+                            key={`recipient-option-group-${id}`}
+                            className="p-1"
+                            value={name}
+                          >
+                            {name}
+                          </option>
+                        );
+                      })}
+              </select>
+              <label
+                className="text-truncate"
+                style={{ width: "90%" }}
+                htmlFor="recipient"
+              >
+                Weitergeleitet an
+              </label>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="col-1">
@@ -121,7 +230,14 @@ const InboxForm = ({ inbox = [], onSave }) => {
           onClick={(event) => {
             event.preventDefault();
             onSave([inputFields, ...inbox]);
-            setInputFields({ ...inputFields, id: inputFields.id + 1 });
+            setInputFields({
+              ...inputFields,
+              id: String(Date.now()),
+              absender: "",
+              type: letter[0].name,
+              recipient: groups[0].name,
+              counter: inputFields.counter + 1,
+            });
           }}
         >
           <AiOutlineCheckCircle />

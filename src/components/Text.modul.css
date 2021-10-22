@@ -3,3 +3,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+p.text-ellipsis,
+p.text-empty {
+  margin-bottom: 0;
+}

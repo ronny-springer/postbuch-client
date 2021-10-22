@@ -1,0 +1,45 @@
+{
+  "groups": [
+    { "id": 5, "name": "Ordnungsamt" },
+    { "id": 4, "name": "Haupt- & Personalamt" },
+    { "id": 3, "name": "Kämmerei" },
+    { "id": 2, "name": "Meldeamt" },
+    { "id": 1, "name": "Bürgeramt" },
+    { "id": 0, "name": "Bürgermeister" }
+  ],
+  "users": [
+    { "id": 21, "name": "Frau Weber" },
+    { "id": 20, "name": "Frau Hentschel" },
+    { "id": 19, "name": "Herr Springer" },
+    { "id": 18, "name": "Herr Freitag" },
+    { "id": 17, "name": "Frau Leckscheid" },
+    { "id": 16, "name": "Frau Mišak" },
+    { "id": 15, "name": "Herr Geißler" },
+    { "id": 14, "name": "Frau Slotta" },
+    { "id": 13, "name": "Frau Naser" },
+    { "id": 12, "name": "Frau Kirschstein" },
+    { "id": 11, "name": "Frau Kaul" },
+    { "id": 10, "name": "Herr Seiler" },
+    { "id": 9, "name": "Frau Goltzsche" },
+    { "id": 8, "name": "Herr Heide" },
+    { "id": 7, "name": "Frau Mielast-Buske" },
+    { "id": 6, "name": "Frau Janitz" },
+    { "id": 5, "name": "Frau Starke" },
+    { "id": 4, "name": "Frau Krüger" },
+    { "id": 3, "name": "Frau Schubert" },
+    { "id": 2, "name": "Herr Koßwig" },
+    { "id": 1, "name": "Frau Sorgalla" },
+    { "id": 0, "name": "Herr Dr. Pollmer" }
+  ],
+  "letter": [
+    { "id": 10, "name": "persönlicher Brief" },
+    { "id": 9, "name": "Werbung" },
+    { "id": 8, "name": "Widerspruch" },
+    { "id": 7, "name": "Bescheid" },
+    { "id": 6, "name": "Mahnung" },
+    { "id": 5, "name": "Rechnung" },
+    { "id": 4, "name": "Bestätigung" },
+    { "id": 2, "name": "Angebot" },
+    { "id": 1, "name": "Anfrage" }
+  ]
+}

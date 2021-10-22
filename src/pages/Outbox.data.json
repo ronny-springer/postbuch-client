@@ -1,25 +1,28 @@
 [
   {
-    "id": 2,
+    "id": "1634220237884",
+    "counter": 2,
     "datum": "29.9.2021",
     "empfänger": "Bauhof",
-    "betreff": "Einladung",
+    "type": "Anfrage",
     "sendung": "Bote",
     "preis": 0
   },
   {
-    "id": 1,
+    "id": "1634215154985",
+    "counter": 1,
     "datum": "28.9.2021",
     "empfänger": "Max Muster",
-    "betreff": "",
+    "type": "Bescheid",
     "sendung": "Einschreiben",
     "preis": 3.1
   },
   {
-    "id": 0,
+    "id": "1634215100677",
+    "counter": 0,
     "datum": "28.9.2021",
     "empfänger": "Muster Firma",
-    "betreff": "",
+    "type": "Rechnung",
     "sendung": "Standardbrief",
     "preis": 0.8
   }

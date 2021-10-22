@@ -8,8 +8,8 @@ const InboxList = ({ inbox = [], onEdit, onDelete }) => {
 
   if (!displayableInbox.length)
     return (
-      <div className="card">
-        <p className="card-body alert alert-light mb-0">
+      <div className="list-group">
+        <p className="list-group-item alert alert-light mb-0">
           Keine Posteinträge gefunden.
         </p>
       </div>
@@ -20,7 +20,7 @@ const InboxList = ({ inbox = [], onEdit, onDelete }) => {
       {displayableInbox.map(
         ({ id, counter, datum, absender, type, recipient }) => (
           <div
-            className="list-group-item pe-0"
+            className="list-group-item pt-0 pb-0"
             id={`inbox-row-${id}`}
             key={`inbox-row-${id}`}
             style={{ borderBottom: "1px solid lightgray" }}

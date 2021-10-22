@@ -9,8 +9,8 @@ const OutboxList = ({ outbox = [], onEdit, onDelete }) => {
 
   if (!displayableOutbox.length)
     return (
-      <div className="card">
-        <p className="card-body alert alert-light mb-0">
+      <div className="list-group">
+        <p className="list-group-item alert alert-light mb-0">
           Keine Posteinträge gefunden.
         </p>
       </div>
@@ -21,7 +21,7 @@ const OutboxList = ({ outbox = [], onEdit, onDelete }) => {
       {displayableOutbox.map(
         ({ id, counter, datum, empfänger, type, sendung, preis }) => (
           <div
-            className="list-group-item"
+            className="list-group-item pt-0 pb-0"
             id={`inbox-row-${id}`}
             key={`outbox-row-${id}`}
             style={{ borderBottom: "1px solid lightgray" }}

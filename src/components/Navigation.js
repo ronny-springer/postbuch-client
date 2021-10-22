@@ -3,7 +3,11 @@ import { useLocation } from "react-router-dom";
 import cx from "classnames";
 
 import { GiPostStamp } from "react-icons/gi";
-import { AiOutlineInbox, AiOutlineIdcard } from "react-icons/ai";
+import {
+  AiOutlineInbox,
+  AiOutlineIdcard,
+  AiOutlineSetting,
+} from "react-icons/ai";
 
 const Navigation = () => {
   const { pathname } = useLocation();
@@ -47,6 +51,21 @@ const Navigation = () => {
           >
             <AiOutlineIdcard className="me-3" />
             Ausgang
+          </a>
+        </li>
+      </ul>
+
+      <ul className="nav nav-pills flex-column mb-auto">
+        <li className="nav-item ps-3 pe-3" style={{ lineHeight: "26px" }}>
+          <a
+            href="/config"
+            className={cx([
+              "nav-link",
+              pathname === "/config" ? "active" : "link-dark",
+            ])}
+          >
+            <AiOutlineSetting className="me-3" />
+            Einstellungen
           </a>
         </li>
       </ul>

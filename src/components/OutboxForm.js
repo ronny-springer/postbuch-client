@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 
 function getPreis(sendung) {
@@ -13,22 +13,24 @@ function getPreis(sendung) {
   return 0.0;
 }
 
-const OutboxForm = ({ outbox = [], onSave }) => {
-  const [inputFields, setInputFields] = useState([]);
+const OutboxForm = ({ outbox = [], config = [], onSave }) => {
+  const { letter = [] } = config;
+  const currentCounter = outbox.length
+    ? Math.max(...outbox.map(({ counter }) => counter)) + 1
+    : 0;
 
   const defaultValues = {
-    id: outbox.length,
+    id: String(Date.now()),
+    counter: currentCounter,
     datum: new Date(Date.now()).toLocaleDateString("de-de"),
     empfänger: "",
-    betreff: "",
+    type: letter[0].name,
     sendung: "Standardbrief",
     preis: "",
+    isDisabled: false,
   };
 
-  useEffect(() => {
-    setInputFields(defaultValues);
-    return null;
-  }, []);
+  const [inputFields, setInputFields] = useState(defaultValues);
 
   return (
     <div className="row">
@@ -37,12 +39,17 @@ const OutboxForm = ({ outbox = [], onSave }) => {
           <input
             type="text"
             className="form-control"
-            id="id"
+            id="counter"
             readOnly
-            value={inputFields.id}
-            onChange={() => {}}
+            value={inputFields.counter}
           />
-          <label htmlFor="id">#</label>
+          <label
+            className="text-truncate"
+            style={{ width: "100%" }}
+            htmlFor="counter"
+          >
+            #
+          </label>
         </div>
       </div>
 
@@ -57,7 +64,13 @@ const OutboxForm = ({ outbox = [], onSave }) => {
               setInputFields({ ...inputFields, datum: event.target.value });
             }}
           />
-          <label htmlFor="datum">Datum</label>
+          <label
+            className="text-truncate"
+            style={{ width: "100%" }}
+            htmlFor="datum"
+          >
+            Datum
+          </label>
         </div>
       </div>
 
@@ -75,31 +88,61 @@ const OutboxForm = ({ outbox = [], onSave }) => {
               });
             }}
           />
-          <label htmlFor="empfänger">Empfänger/Firma</label>
+          <label
+            className="text-truncate"
+            style={{ width: "100%" }}
+            htmlFor="empfänger"
+          >
+            Empfänger/Firma
+          </label>
         </div>
       </div>
+
+      {letter.length && (
+        <div className="col-2">
+          <div className="form-floating">
+            <select
+              className="form-select"
+              id="type"
+              aria-label="Brieftyp"
+              defaultValue={letter[0].name}
+              onChange={(event) => {
+                setInputFields({
+                  ...inputFields,
+                  type: event.target.value,
+                });
+              }}
+            >
+              {letter
+                .sort((a, b) => {
+                  return a.name.localeCompare(b.name);
+                })
+                .map(({ id, name }) => {
+                  return (
+                    <option
+                      key={`type-option-${id}`}
+                      className="p-1"
+                      value={name}
+                    >
+                      {name}
+                    </option>
+                  );
+                })}
+            </select>
+            <label
+              className="text-truncate"
+              style={{ width: "90%" }}
+              htmlFor="type"
+            >
+              Brieftyp
+            </label>
+          </div>
+        </div>
+      )}
 
       <div className="col-3">
-        <div className="form-floating">
-          <input
-            type="text"
-            className="form-control"
-            id="betreff"
-            value={inputFields.betreff}
-            onChange={(event) => {
-              setInputFields({
-                ...inputFields,
-                betreff: event.target.value,
-              });
-            }}
-          />
-          <label htmlFor="betreff">Betreff</label>
-        </div>
-      </div>
-
-      <div className="col-2">
-        <div className="input-group">
-          <div className="form-floating">
+        <div className="d-flex">
+          <div className="form-floating" style={{ flexGrow: 1 }}>
             <select
               className="form-select"
               id="sendung"
@@ -120,11 +163,17 @@ const OutboxForm = ({ outbox = [], onSave }) => {
               <option value="Postkarte">Postkarte</option>
               <option value="Bote">Bote</option>
             </select>
-            <label htmlFor="sendung">Sendung</label>
+            <label
+              className="text-truncate"
+              style={{ width: "90%" }}
+              htmlFor="sendung"
+            >
+              Sendung
+            </label>
           </div>
           <span
             className="input-group-text"
-            style={{ width: "74px", marginLeft: "-4px", paddingTop: "22px" }}
+            style={{ paddingTop: "22px", width: "76px" }}
           >
             {getPreis(inputFields.sendung).toLocaleString("de-DE", {
               style: "currency",
@@ -147,7 +196,15 @@ const OutboxForm = ({ outbox = [], onSave }) => {
               { ...inputFields, preis: getPreis(inputFields.sendung) },
               ...outbox,
             ]);
-            setInputFields({ ...inputFields, id: inputFields.id + 1 });
+            setInputFields({
+              ...inputFields,
+              id: String(Date.now()),
+              empfänger: "",
+              type: letter[0].name,
+              sendung: "Standardbrief",
+              preis: "",
+              counter: inputFields.counter + 1,
+            });
           }}
         >
           <AiOutlineCheckCircle />

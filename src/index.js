@@ -2,7 +2,7 @@ import React, { StrictMode } from "react";
 import { hydrate, render } from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 
-import Router from "./Router";
+import App from "./App";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
@@ -10,7 +10,7 @@ import "./index.css";
 const wayToRender = module.hot ? render : hydrate;
 wayToRender(
   <StrictMode>
-    <Router />
+    <App />
   </StrictMode>,
   document.getElementById("root")
 );

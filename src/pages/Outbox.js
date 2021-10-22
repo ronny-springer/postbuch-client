@@ -92,7 +92,7 @@ const Outbox = ({ config }) => {
           <OutboxForm config={config} outbox={outbox} onSave={setOutbox} />
         </div>
         <div className="mt-3">
-          <OutboxList outbox={outbox} onEdit={setOutbox} />
+          <OutboxList outbox={outbox} onEdit={setOutbox} onDelete={setOutbox} />
         </div>
       </main>
     </div>

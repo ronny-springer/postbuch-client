@@ -78,7 +78,7 @@ const Inbox = ({ config }) => {
           <InboxForm config={config} inbox={inbox} onSave={setInbox} />
         </div>
         <div className="mt-3">
-          <InboxList inbox={inbox} onEdit={setInbox} />
+          <InboxList inbox={inbox} onEdit={setInbox} onDelete={setInbox} />
         </div>
       </main>
     </div>

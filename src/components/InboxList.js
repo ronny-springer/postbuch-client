@@ -3,7 +3,7 @@ import cx from "classnames";
 import { AiOutlineDelete } from "react-icons/ai";
 import Text from "./Text";
 
-const InboxList = ({ inbox = [], onEdit }) => {
+const InboxList = ({ inbox = [], onEdit, onDelete }) => {
   const displayableInbox = inbox.filter(({ isDisabled }) => !isDisabled) || [];
 
   if (!displayableInbox.length)
@@ -43,23 +43,7 @@ const InboxList = ({ inbox = [], onEdit }) => {
                   onClick={(event) => {
                     event.preventDefault();
 
-                    console.log([
-                      ...new Map(
-                        [
-                          ...inbox,
-                          {
-                            id,
-                            counter: null,
-                            datum,
-                            absender,
-                            type,
-                            isDisabled: true,
-                          },
-                        ].map((item) => [item.id, item])
-                      ).values(),
-                    ]);
-
-                    onEdit([
+                    onDelete([
                       ...new Map(
                         [
                           ...inbox,

@@ -3,7 +3,7 @@ import cx from "classnames";
 import { AiOutlineDelete } from "react-icons/ai";
 import Text from "./Text";
 
-const OutboxList = ({ outbox = [], onEdit }) => {
+const OutboxList = ({ outbox = [], onEdit, onDelete }) => {
   const displayableOutbox =
     outbox.filter(({ isDisabled }) => !isDisabled) || [];
 
@@ -49,8 +49,7 @@ const OutboxList = ({ outbox = [], onEdit }) => {
                   className={cx("btn", "btn-light")}
                   onClick={(event) => {
                     event.preventDefault();
-
-                    onEdit([
+                    onDelete([
                       ...new Map(
                         [
                           ...outbox,

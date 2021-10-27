@@ -9,13 +9,13 @@ import {
   AiOutlineSetting,
 } from "react-icons/ai";
 
-const Navigation = () => {
+const Navigation = ({ profile }) => {
   const { pathname } = useLocation();
 
   return (
     <nav
       className="bg-light position-relative pt-4"
-      style={{ height: "100vh", width: "240px" }}
+      style={{ height: "100%", width: "240px", background: "#F8F9FA" }}
     >
       <h1 className="position-relative ps-3 pe-3">
         <span
@@ -55,20 +55,22 @@ const Navigation = () => {
         </li>
       </ul>
 
-      <ul className="nav nav-pills flex-column mb-auto">
-        <li className="nav-item ps-3 pe-3" style={{ lineHeight: "26px" }}>
-          <a
-            href="/config"
-            className={cx([
-              "nav-link",
-              pathname === "/config" ? "active" : "link-dark",
-            ])}
-          >
-            <AiOutlineSetting className="me-3" />
-            Einstellungen
-          </a>
-        </li>
-      </ul>
+      {profile === "admin" ? (
+        <ul className="nav nav-pills flex-column mb-auto">
+          <li className="nav-item ps-3 pe-3" style={{ lineHeight: "26px" }}>
+            <a
+              href="/config"
+              className={cx([
+                "nav-link",
+                pathname === "/config" ? "active" : "link-dark",
+              ])}
+            >
+              <AiOutlineSetting className="me-3" />
+              Einstellungen
+            </a>
+          </li>
+        </ul>
+      ) : null}
     </nav>
   );
 };

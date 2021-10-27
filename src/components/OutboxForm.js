@@ -106,7 +106,7 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
               className="form-select"
               id="type"
               aria-label="Brieftyp"
-              defaultValue={letter[0].name}
+              value={inputFields.type}
               onChange={(event) => {
                 setInputFields({
                   ...inputFields,
@@ -149,7 +149,7 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
                 className="form-select"
                 id="sendung"
                 aria-label="Sendung"
-                defaultValue={inputFields.sendung}
+                value={inputFields.sendung}
                 onChange={(event) => {
                   setInputFields({
                     ...inputFields,
@@ -204,7 +204,7 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
               id: String(Date.now()),
               empfänger: "",
               type: letter[0].name,
-              sendung: "Standardbrief",
+              sendung: postalItems[postalItems.length - 1].name,
               preis: "",
               counter: inputFields.counter + 1,
             });

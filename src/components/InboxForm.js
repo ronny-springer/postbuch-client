@@ -92,7 +92,7 @@ const InboxForm = ({ inbox = [], config = {}, onSave }) => {
               className="form-select"
               id="type"
               aria-label="Brieftyp"
-              defaultValue={letter[0].name}
+              value={inputFields.type}
               onChange={(event) => {
                 setInputFields({
                   ...inputFields,

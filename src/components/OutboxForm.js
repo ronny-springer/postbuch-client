@@ -177,12 +177,12 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
                 Sendung
               </label>
             </div>
-            <span
+            <div
               className="input-group-text"
               style={{ paddingTop: "22px", width: "76px" }}
             >
               <Text currency="Euro">{getPreis(inputFields.sendung)}</Text>
-            </span>
+            </div>
           </div>
         </div>
       )}

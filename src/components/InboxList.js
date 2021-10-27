@@ -37,9 +37,9 @@ const InboxList = ({ inbox = [], onEdit, onDelete }) => {
                     <i style={{ color: "rgb(207 207 207)" }}>{datum}</i>
                   </div>
                   <div className="col">
-                    <i>
-                      <Text>Eintrag entfernt!</Text>
-                    </i>
+                    <Text>
+                      <i>Eintrag entfernt!</i>
+                    </Text>
                   </div>
                 </div>
               </div>

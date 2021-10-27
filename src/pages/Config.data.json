@@ -1,11 +1,11 @@
 {
   "groups": [
-    { "id": 5, "name": "Ordnungsamt" },
+    { "id": 1, "name": "Bürgeramt" },
+    { "id": 0, "name": "Bürgermeister" },
     { "id": 4, "name": "Haupt- & Personalamt" },
     { "id": 3, "name": "Kämmerei" },
     { "id": 2, "name": "Meldeamt" },
-    { "id": 1, "name": "Bürgeramt" },
-    { "id": 0, "name": "Bürgermeister" }
+    { "id": 5, "name": "Ordnungsamt" }
   ],
   "users": [
     { "id": 21, "name": "Frau Weber" },
@@ -32,14 +32,23 @@
     { "id": 0, "name": "Herr Dr. Pollmer" }
   ],
   "letter": [
-    { "id": 10, "name": "persönlicher Brief" },
-    { "id": 9, "name": "Werbung" },
-    { "id": 8, "name": "Widerspruch" },
-    { "id": 7, "name": "Bescheid" },
-    { "id": 6, "name": "Mahnung" },
-    { "id": 5, "name": "Rechnung" },
-    { "id": 4, "name": "Bestätigung" },
+    { "id": 1, "name": "Anfrage" },
     { "id": 2, "name": "Angebot" },
-    { "id": 1, "name": "Anfrage" }
+    { "id": 7, "name": "Bescheid" },
+    { "id": 4, "name": "Bestätigung" },
+    { "id": 6, "name": "Mahnung" },
+    { "id": 10, "name": "persönlicher Brief" },
+    { "id": 5, "name": "Rechnung" },
+    { "id": 9, "name": "Werbung" },
+    { "id": 8, "name": "Widerspruch" }
+  ],
+  "postalItems": [
+    { "id": 6, "name": "Bote" },
+    { "id": 5, "name": "Postkarte" },
+    { "id": 4, "name": "Infosendung" },
+    { "id": 3, "name": "Expressbrief" },
+    { "id": 2, "name": "Einschreiben" },
+    { "id": 1, "name": "Maxibrief" },
+    { "id": 0, "name": "Standardbrief" }
   ]
 }

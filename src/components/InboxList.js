@@ -38,7 +38,7 @@ const InboxList = ({ inbox = [], onEdit, onDelete }) => {
                   </div>
                   <div className="col">
                     <i>
-                      <Text text="Eintrag entfernt!" />
+                      <Text>Eintrag entfernt!</Text>
                     </i>
                   </div>
                 </div>
@@ -57,13 +57,13 @@ const InboxList = ({ inbox = [], onEdit, onDelete }) => {
                 <div className="col-1">{counter}</div>
                 <div className="col-2">{datum}</div>
                 <div className="col-3">
-                  <Text text={absender} />
+                  <Text>{absender}</Text>
                 </div>
                 <div className="col-2" style={{ paddingLeft: "24px" }}>
-                  <Text text={type} />
+                  <Text>{type}</Text>
                 </div>
                 <div className="col-3" style={{ paddingLeft: "116px" }}>
-                  <Text text={recipient} />
+                  <Text>{recipient}</Text>
                 </div>
                 <div className="col-1">
                   <button

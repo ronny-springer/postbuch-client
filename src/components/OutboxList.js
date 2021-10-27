@@ -47,7 +47,7 @@ const OutboxList = ({ outbox = [], onEdit, onDelete }) => {
                   </div>
                   <div className="col">
                     <i>
-                      <Text text="Eintrag entfernt!" />
+                      <Text>Eintrag entfernt!</Text>
                     </i>
                   </div>
                 </div>
@@ -66,19 +66,17 @@ const OutboxList = ({ outbox = [], onEdit, onDelete }) => {
                 <div className="col-1">{counter}</div>
                 <div className="col-2">{datum}</div>
                 <div className="col-3">
-                  <Text text={empfänger} />
+                  <Text>{empfänger}</Text>
                 </div>
                 <div className="col-2" style={{ paddingLeft: "24px" }}>
-                  <Text text={type} />
+                  <Text>{type}</Text>
                 </div>
                 <div className="col-3" style={{ paddingLeft: "32px" }}>
-                  <Text
-                    text={`${sendung} (${preis.toLocaleString("de-DE", {
-                      style: "currency",
-                      currency: "EUR",
-                      minimumFractionDigits: 2,
-                    })})`}
-                  />
+                  <Text>{`${sendung} (${preis.toLocaleString("de-DE", {
+                    style: "currency",
+                    currency: "EUR",
+                    minimumFractionDigits: 2,
+                  })})`}</Text>
                 </div>
                 <div className="col-1">
                   <button

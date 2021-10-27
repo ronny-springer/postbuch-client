@@ -23,7 +23,24 @@ const Outbox = ({ config }) => {
     }
   }, [outbox]);
 
-  const [budget, setBudget] = useState(500);
+  const [budget, setBudget] = useState(() => {
+    try {
+      const item = window.localStorage.getItem("budget");
+      return item ? JSON.parse(item) : 0;
+    } catch (exception) {
+      console.error("error while reading outbox data", exception);
+      return 0;
+    }
+  });
+  useEffect(() => {
+    try {
+      const string = JSON.stringify(budget);
+      window.localStorage.setItem("budget", string);
+    } catch (exception) {
+      console.error("error while writing outbox data", exception);
+    }
+  }, [budget]);
+
   const [query, setQuery] = useState("");
 
   return (

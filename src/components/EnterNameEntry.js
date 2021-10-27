@@ -16,15 +16,16 @@ const EnterNameEntry = ({ label = "", list = [], onSave }) => {
             onChange={(event) => {
               const name = event.target.value;
               setName(name);
+
               if (!name.length) return setEnabledAdd(false);
               setEnabledAdd(true);
             }}
           />
           <button
             type="button"
+            className="btn btn-primary"
             style={{ width: "42px" }}
             disabled={!enabledAdd}
-            className="btn btn-primary"
             onClick={(event) => {
               event.preventDefault();
               onSave([{ id: list.length, name }, ...list]);

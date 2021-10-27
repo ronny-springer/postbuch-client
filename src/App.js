@@ -5,7 +5,11 @@ import Router from "./Router";
 const App = () => {
   const [loading, setLoading] = useState(true);
 
-  const defaultConfig = { groups: [], users: [], letter: [] };
+  const defaultConfig = {
+    groups: [],
+    users: [],
+    letter: [],
+  };
   const [config, setConfig] = useState(defaultConfig);
 
   useEffect(() => {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
+import { Text } from "../components";
 
 function getPreis(sendung) {
   if (sendung === "Standardbrief") return 0.8;
@@ -175,11 +176,7 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
             className="input-group-text"
             style={{ paddingTop: "22px", width: "76px" }}
           >
-            {getPreis(inputFields.sendung).toLocaleString("de-DE", {
-              style: "currency",
-              currency: "EUR",
-              minimumFractionDigits: 2,
-            })}
+            <Text currency="Euro">{getPreis(inputFields.sendung)}</Text>
           </span>
         </div>
       </div>

@@ -15,7 +15,7 @@ function getPreis(sendung) {
 }
 
 const OutboxForm = ({ outbox = [], config = [], onSave }) => {
-  const { letter = [] } = config;
+  const { letter = [], postalItems = [] } = config;
   const currentCounter = outbox.length
     ? Math.max(...outbox.map(({ counter }) => counter)) + 1
     : 0;
@@ -141,45 +141,51 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
         </div>
       )}
 
-      <div className="col-3">
-        <div className="d-flex">
-          <div className="form-floating" style={{ flexGrow: 1 }}>
-            <select
-              className="form-select"
-              id="sendung"
-              aria-label="Sendung"
-              defaultValue={inputFields.sendung}
-              onChange={(event) => {
-                setInputFields({
-                  ...inputFields,
-                  sendung: event.target.value,
-                });
-              }}
+      {postalItems.length && (
+        <div className="col-3">
+          <div className="d-flex">
+            <div className="form-floating" style={{ flexGrow: 1 }}>
+              <select
+                className="form-select"
+                id="sendung"
+                aria-label="Sendung"
+                defaultValue={inputFields.sendung}
+                onChange={(event) => {
+                  setInputFields({
+                    ...inputFields,
+                    sendung: event.target.value,
+                  });
+                }}
+              >
+                {postalItems.map(({ id, name }) => {
+                  return (
+                    <option
+                      key={`type-option-${id}`}
+                      className="p-1"
+                      value={name}
+                    >
+                      {name}
+                    </option>
+                  );
+                })}
+              </select>
+              <label
+                className="text-truncate"
+                style={{ width: "90%" }}
+                htmlFor="sendung"
+              >
+                Sendung
+              </label>
+            </div>
+            <span
+              className="input-group-text"
+              style={{ paddingTop: "22px", width: "76px" }}
             >
-              <option value="Standardbrief">Standardbrief</option>
-              <option value="Maxibrief">Maxibrief</option>
-              <option value="Einschreiben">Einschreiben</option>
-              <option value="Expressbrief">Expressbrief</option>
-              <option value="Infosendung">Infosendung</option>
-              <option value="Postkarte">Postkarte</option>
-              <option value="Bote">Bote</option>
-            </select>
-            <label
-              className="text-truncate"
-              style={{ width: "90%" }}
-              htmlFor="sendung"
-            >
-              Sendung
-            </label>
+              <Text currency="Euro">{getPreis(inputFields.sendung)}</Text>
+            </span>
           </div>
-          <span
-            className="input-group-text"
-            style={{ paddingTop: "22px", width: "76px" }}
-          >
-            <Text currency="Euro">{getPreis(inputFields.sendung)}</Text>
-          </span>
         </div>
-      </div>
+      )}
 
       <div className="col-1">
         <button

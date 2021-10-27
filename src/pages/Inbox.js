@@ -4,18 +4,15 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { Navigation, InboxForm, InboxList } from "../components";
 
 const Inbox = ({ config }) => {
-  const [inbox, setInbox] = useState([]);
-  const [query, setQuery] = useState("");
-
-  useEffect(() => {
+  const [inbox, setInbox] = useState(() => {
     try {
-      const response = window.localStorage.getItem("inbox");
-      const json = JSON.parse(response);
-      setInbox(json);
+      const item = window.localStorage.getItem("inbox");
+      return item ? JSON.parse(item) : [];
     } catch (exception) {
       console.error("error while reading inbox data", exception);
+      return [];
     }
-  }, []);
+  });
 
   useEffect(() => {
     try {
@@ -26,34 +23,21 @@ const Inbox = ({ config }) => {
     }
   }, [inbox]);
 
-  useEffect(() => {
-    if (query.length) {
-      const result = inbox.filter(
-        ({ absender }) =>
-          absender.toLowerCase().indexOf(query.toLowerCase()) >= 0
-      );
-      setInbox(result);
-    } else {
-      setInbox(inbox);
-    }
-  }, [query]);
+  const [query, setQuery] = useState("");
 
   return (
-    <div
-      className="row overflow-hidden"
-      style={{ width: "100vw", height: "100vh" }}
-    >
+    <div className="row overflow-hidden">
       <div className="col-auto">
-        <Navigation />
+        <Navigation profile={config.profile} />
       </div>
 
-      <main className="col" style={{ height: "100vh" }}>
+      <main className="col pe-4">
         <div style={{ paddingTop: "32px" }}>
           <div className="row">
             <div className="col-3">
               <h2>Eingang</h2>
             </div>
-            <div className="col-6">
+            <div className="col-4">
               <div className="input-group">
                 <span className="input-group-text">
                   <AiOutlineSearch />
@@ -74,11 +58,20 @@ const Inbox = ({ config }) => {
           </div>
         </div>
 
-        <div style={{ paddingTop: "32px" }}>
-          <InboxForm config={config} inbox={inbox} onSave={setInbox} />
-        </div>
-        <div className="mt-3">
-          <InboxList inbox={inbox} onEdit={setInbox} onDelete={setInbox} />
+        {config.profile === "writer" || config.profile === "admin" ? (
+          <div style={{ paddingTop: "32px" }}>
+            <InboxForm config={config} inbox={inbox} onSave={setInbox} />
+          </div>
+        ) : null}
+        <div className="mt-3 mb-3">
+          <InboxList
+            inbox={inbox.filter(
+              ({ absender }) =>
+                absender.toLowerCase().indexOf(query.toLowerCase()) >= 0
+            )}
+            onEdit={setInbox}
+            onDelete={setInbox}
+          />
         </div>
       </main>
     </div>

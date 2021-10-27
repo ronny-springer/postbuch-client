@@ -4,20 +4,15 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { Navigation, OutboxForm, OutboxList } from "../components";
 
 const Outbox = ({ config }) => {
-  const [outbox, setOutbox] = useState([]);
-  const [query, setQuery] = useState("");
-
-  const [budget, setBudget] = useState(496.1);
-
-  useEffect(() => {
+  const [outbox, setOutbox] = useState(() => {
     try {
-      const response = window.localStorage.getItem("outbox");
-      const json = JSON.parse(response) || "";
-      setOutbox(json);
+      const item = window.localStorage.getItem("outbox");
+      return item ? JSON.parse(item) : [];
     } catch (exception) {
       console.error("error while reading outbox data", exception);
+      return [];
     }
-  }, []);
+  });
 
   useEffect(() => {
     try {
@@ -28,34 +23,22 @@ const Outbox = ({ config }) => {
     }
   }, [outbox]);
 
-  useEffect(() => {
-    if (query.length) {
-      const result = outbox.filter(
-        ({ empfänger }) =>
-          empfänger.toLowerCase().indexOf(query.toLowerCase()) >= 0
-      );
-      setOutbox(result);
-    } else {
-      setOutbox(outbox);
-    }
-  }, [query]);
+  const [budget, setBudget] = useState(500);
+  const [query, setQuery] = useState("");
 
   return (
-    <div
-      className="row overflow-hidden"
-      style={{ width: "100vw", height: "100vh" }}
-    >
+    <div className="row overflow-hidden">
       <div className="col-auto">
-        <Navigation />
+        <Navigation profile={config.profile} />
       </div>
 
-      <main className="col" style={{ height: "100vh" }}>
+      <main className="col pe-4">
         <div style={{ paddingTop: "32px" }}>
           <div className="row">
             <div className="col-3">
               <h2>Ausgang</h2>
             </div>
-            <div className="col-6">
+            <div className="col-4">
               <div className="input-group">
                 <span className="input-group-text">
                   <AiOutlineSearch />
@@ -73,7 +56,7 @@ const Outbox = ({ config }) => {
                 />
               </div>
             </div>
-            <div className="col-2">
+            <div className="col-4">
               <div className="input-group">
                 <div className="form-control text-trancate">Budget</div>
                 <div className="input-group-text">
@@ -88,11 +71,27 @@ const Outbox = ({ config }) => {
           </div>
         </div>
 
-        <div style={{ paddingTop: "32px" }}>
-          <OutboxForm config={config} outbox={outbox} onSave={setOutbox} />
-        </div>
-        <div className="mt-3">
-          <OutboxList outbox={outbox} onEdit={setOutbox} onDelete={setOutbox} />
+        {config.profile === "writer" || config.profile === "admin" ? (
+          <div style={{ paddingTop: "32px" }}>
+            <OutboxForm
+              config={config}
+              outbox={outbox}
+              onSave={(saved) => {
+                setBudget(budget - saved[0].preis);
+                setOutbox(saved);
+              }}
+            />
+          </div>
+        ) : null}
+        <div className="mt-3 mb-3">
+          <OutboxList
+            outbox={outbox.filter(
+              ({ empfänger }) =>
+                empfänger.toLowerCase().indexOf(query.toLowerCase()) >= 0
+            )}
+            onEdit={setOutbox}
+            onDelete={setOutbox}
+          />
         </div>
       </main>
     </div>

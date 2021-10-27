@@ -9,6 +9,7 @@ const App = () => {
     groups: [],
     users: [],
     letter: [],
+    postalItems: [],
   };
   const [config, setConfig] = useState(defaultConfig);
 

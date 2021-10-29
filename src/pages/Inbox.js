@@ -26,7 +26,7 @@ const Inbox = ({ config }) => {
   const [query, setQuery] = useState("");
 
   return (
-    <div className="row overflow-hidden">
+    <div className="row overflow-hidden" style={{ minHeight: "100vh" }}>
       <div className="col-auto">
         <Navigation profile={config.profile} />
       </div>

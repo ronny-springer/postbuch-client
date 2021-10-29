@@ -50,5 +50,6 @@
     { "id": 2, "name": "Einschreiben" },
     { "id": 1, "name": "Maxibrief" },
     { "id": 0, "name": "Standardbrief" }
-  ]
+  ],
+  "profil": "reader"
 }

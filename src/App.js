@@ -10,6 +10,7 @@ const App = () => {
     users: [],
     letter: [],
     postalItems: [],
+    profile: "reader",
   };
   const [config, setConfig] = useState(defaultConfig);
 

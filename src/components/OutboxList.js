@@ -22,6 +22,7 @@ const OutboxList = ({ outbox = [], onEdit, onDelete }) => {
           datum,
           empfänger,
           type,
+          betreff,
           sendung,
           preis,
           isDisabled,
@@ -65,13 +66,16 @@ const OutboxList = ({ outbox = [], onEdit, onDelete }) => {
               <div className="row d-flex align-items-center">
                 <div className="col-1">{counter}</div>
                 <div className="col-2">{datum}</div>
-                <div className="col-3">
+                <div className="col-2">
                   <Text>{empfänger}</Text>
                 </div>
                 <div className="col-2" style={{ paddingLeft: "24px" }}>
                   <Text>{type}</Text>
                 </div>
-                <div className="col-3" style={{ paddingLeft: "32px" }}>
+                <div className="col-2">
+                  <Text>{betreff}</Text>
+                </div>
+                <div className="col-2" style={{ paddingLeft: "32px" }}>
                   <Text>{`${sendung} (${preis.toLocaleString("de-DE", {
                     style: "currency",
                     currency: "EUR",

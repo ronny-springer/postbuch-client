@@ -26,6 +26,7 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
     datum: new Date(Date.now()).toLocaleDateString("de-de"),
     empfänger: "",
     type: letter[0].name,
+    betreff: "",
     sendung: "Standardbrief",
     preis: "",
     isDisabled: false,
@@ -75,7 +76,7 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
         </div>
       </div>
 
-      <div className="col-3">
+      <div className="col-2">
         <div className="form-floating">
           <input
             type="text"
@@ -141,8 +142,32 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
         </div>
       )}
 
+      <div className="col-2">
+        <div className="form-floating">
+          <input
+            type="text"
+            className="form-control"
+            id="betreff"
+            value={inputFields.betreff}
+            onChange={(event) => {
+              setInputFields({
+                ...inputFields,
+                betreff: event.target.value,
+              });
+            }}
+          />
+          <label
+            className="text-truncate"
+            style={{ width: "100%" }}
+            htmlFor="betreff"
+          >
+            Betreff
+          </label>
+        </div>
+      </div>
+
       {postalItems.length && (
-        <div className="col-3">
+        <div className="col-2">
           <div className="d-flex">
             <div className="form-floating" style={{ flexGrow: 1 }}>
               <select

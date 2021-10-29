@@ -16,7 +16,16 @@ const InboxList = ({ inbox = [], onEdit, onDelete }) => {
   return (
     <div className="list-group">
       {inbox.map(
-        ({ id, counter, datum, absender, type, recipient, isDisabled }) => {
+        ({
+          id,
+          counter,
+          datum,
+          absender,
+          betreff,
+          type,
+          recipient,
+          isDisabled,
+        }) => {
           if (isDisabled) {
             return (
               <div
@@ -56,13 +65,16 @@ const InboxList = ({ inbox = [], onEdit, onDelete }) => {
               <div className="row d-flex align-items-center">
                 <div className="col-1">{counter}</div>
                 <div className="col-2">{datum}</div>
-                <div className="col-3">
+                <div className="col-2">
                   <Text>{absender}</Text>
+                </div>
+                <div className="col-2">
+                  <Text>{betreff}</Text>
                 </div>
                 <div className="col-2" style={{ paddingLeft: "24px" }}>
                   <Text>{type}</Text>
                 </div>
-                <div className="col-3" style={{ paddingLeft: "116px" }}>
+                <div className="col-2" style={{ paddingLeft: "116px" }}>
                   <Text>{recipient}</Text>
                 </div>
                 <div className="col-1">

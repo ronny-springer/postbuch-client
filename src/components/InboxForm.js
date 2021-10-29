@@ -13,6 +13,7 @@ const InboxForm = ({ inbox = [], config = {}, onSave }) => {
     counter: currentCounter,
     datum: new Date(Date.now()).toLocaleDateString("de-de"),
     absender: "",
+    betreff: "",
     type: letter[0].name,
     recipient: groups[0].name,
     isDisabled: false,
@@ -61,7 +62,7 @@ const InboxForm = ({ inbox = [], config = {}, onSave }) => {
         </div>
       </div>
 
-      <div className="col-3">
+      <div className="col-2">
         <div className="form-floating">
           <input
             type="text"
@@ -81,6 +82,30 @@ const InboxForm = ({ inbox = [], config = {}, onSave }) => {
             htmlFor="absender"
           >
             Absender/Firma
+          </label>
+        </div>
+      </div>
+
+      <div className="col-2">
+        <div className="form-floating">
+          <input
+            type="text"
+            className="form-control"
+            id="betreff"
+            value={inputFields.betreff}
+            onChange={(event) => {
+              setInputFields({
+                ...inputFields,
+                betreff: event.target.value,
+              });
+            }}
+          />
+          <label
+            className="text-truncate"
+            style={{ width: "100%" }}
+            htmlFor="betreff"
+          >
+            Betreff
           </label>
         </div>
       </div>
@@ -127,7 +152,7 @@ const InboxForm = ({ inbox = [], config = {}, onSave }) => {
         </div>
       )}
 
-      <div className="col-3">
+      <div className="col-2">
         {(users.length || groups.length) && (
           <div className="d-flex">
             <span className="input-group-text">
@@ -234,6 +259,7 @@ const InboxForm = ({ inbox = [], config = {}, onSave }) => {
               ...inputFields,
               id: String(Date.now()),
               absender: "",
+              betreff: "",
               type: letter[0].name,
               recipient: groups[0].name,
               counter: inputFields.counter + 1,

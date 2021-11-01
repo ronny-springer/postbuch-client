@@ -74,12 +74,13 @@ const InboxList = ({ inbox = [], onEdit, onDelete }) => {
                 <div className="col-2" style={{ paddingLeft: "24px" }}>
                   <Text>{type}</Text>
                 </div>
-                <div className="col-2" style={{ paddingLeft: "116px" }}>
+                <div className="col-2" style={{ paddingLeft: "102px" }}>
                   <Text>{recipient}</Text>
                 </div>
-                <div className="col-1">
+                <div className="col-1 pe-0">
                   <button
                     className={cx("btn", "btn-light")}
+                    style={{ float: "right" }}
                     onClick={(event) => {
                       event.preventDefault();
 

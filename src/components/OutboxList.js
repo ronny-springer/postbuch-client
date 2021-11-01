@@ -84,9 +84,10 @@ const OutboxList = ({ outbox = [], onEdit, onDelete }) => {
                     )
                   </Text>
                 </div>
-                <div className="col-1">
+                <div className="col-1 pe-0">
                   <button
                     className={cx("btn", "btn-light")}
+                    style={{ float: "right" }}
                     onClick={(event) => {
                       event.preventDefault();
                       onDelete([

@@ -160,7 +160,6 @@ const InboxForm = ({ inbox = [], config = {}, onSave }) => {
                 className="form-check form-switch"
                 style={{
                   position: "relative",
-                  paddingRight: "2rem",
                   height: "42px",
                 }}
               >
@@ -185,7 +184,7 @@ const InboxForm = ({ inbox = [], config = {}, onSave }) => {
                       "scale(.85) translateY(-.5rem) translateX(.15rem)",
                   }}
                 >
-                  Amt/Person
+                  {checkedUsers ? "Name" : "Amt"}
                 </label>
               </div>
             </span>

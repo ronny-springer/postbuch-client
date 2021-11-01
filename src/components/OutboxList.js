@@ -76,11 +76,13 @@ const OutboxList = ({ outbox = [], onEdit, onDelete }) => {
                   <Text>{betreff}</Text>
                 </div>
                 <div className="col-2" style={{ paddingLeft: "32px" }}>
-                  <Text>{`${sendung} (${preis.toLocaleString("de-DE", {
-                    style: "currency",
-                    currency: "EUR",
-                    minimumFractionDigits: 2,
-                  })})`}</Text>
+                  <Text>
+                    {sendung} (
+                    <Text inline currency="Euro">
+                      {preis}
+                    </Text>
+                    )
+                  </Text>
                 </div>
                 <div className="col-1">
                   <button

@@ -1,17 +1,19 @@
 import React from "react";
 
-const Text = ({ currency = "", children }) => {
-  if (!children) return <p className="m-0">-</p>;
+const Text = ({ inline, currency = "", children }) => {
+  const Tag = inline ? "span" : "p";
+
+  if (!children) return <Tag className="m-0">-</Tag>;
 
   if (currency.length && currency === "Euro")
     return (
-      <p className="text-truncate m-0">
+      <Tag className="text-truncate m-0">
         {children.toLocaleString("de-DE", {
           style: "currency",
           currency: "EUR",
           minimumFractionDigits: 2,
         })}
-      </p>
+      </Tag>
     );
 
   return <p className="text-truncate m-0">{children}</p>;

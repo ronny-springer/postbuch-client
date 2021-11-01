@@ -69,11 +69,11 @@ const OutboxList = ({ outbox = [], onEdit, onDelete }) => {
                 <div className="col-2">
                   <Text>{empfänger}</Text>
                 </div>
-                <div className="col-2" style={{ paddingLeft: "24px" }}>
-                  <Text>{type}</Text>
-                </div>
                 <div className="col-2">
                   <Text>{betreff}</Text>
+                </div>
+                <div className="col-2" style={{ paddingLeft: "24px" }}>
+                  <Text>{type}</Text>
                 </div>
                 <div className="col-2" style={{ paddingLeft: "32px" }}>
                   <Text>

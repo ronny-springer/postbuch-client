@@ -100,6 +100,30 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
         </div>
       </div>
 
+      <div className="col-2">
+        <div className="form-floating">
+          <input
+            type="text"
+            className="form-control"
+            id="betreff"
+            value={inputFields.betreff}
+            onChange={(event) => {
+              setInputFields({
+                ...inputFields,
+                betreff: event.target.value,
+              });
+            }}
+          />
+          <label
+            className="text-truncate"
+            style={{ width: "100%" }}
+            htmlFor="betreff"
+          >
+            Betreff
+          </label>
+        </div>
+      </div>
+
       {letter.length && (
         <div className="col-2">
           <div className="form-floating">
@@ -141,30 +165,6 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
           </div>
         </div>
       )}
-
-      <div className="col-2">
-        <div className="form-floating">
-          <input
-            type="text"
-            className="form-control"
-            id="betreff"
-            value={inputFields.betreff}
-            onChange={(event) => {
-              setInputFields({
-                ...inputFields,
-                betreff: event.target.value,
-              });
-            }}
-          />
-          <label
-            className="text-truncate"
-            style={{ width: "100%" }}
-            htmlFor="betreff"
-          >
-            Betreff
-          </label>
-        </div>
-      </div>
 
       {postalItems.length && (
         <div className="col-2">

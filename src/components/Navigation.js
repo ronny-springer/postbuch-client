@@ -6,6 +6,7 @@ import { GiPostStamp } from "react-icons/gi";
 import {
   AiOutlineInbox,
   AiOutlineIdcard,
+<<<<<<< HEAD
   AiOutlineSetting,
 } from "react-icons/ai";
 
@@ -17,6 +18,16 @@ const Navigation = ({ profile }) => {
       className="bg-light position-relative pt-4"
       style={{ height: "100%", width: "240px", background: "#F8F9FA" }}
     >
+=======
+  AiOutlineDelete,
+} from "react-icons/ai";
+
+const Navigation = () => {
+  const { pathname } = useLocation();
+
+  return (
+    <nav className="bg-light position-relative" style={{ height: "100vh" }}>
+>>>>>>> 9eaf250f30f86557cac0e23ac96fd17b909926cf
       <h1 className="position-relative ps-3 pe-3">
         <span
           className="position-absolute"
@@ -53,6 +64,7 @@ const Navigation = ({ profile }) => {
             Ausgang
           </a>
         </li>
+<<<<<<< HEAD
       </ul>
 
       {profile === "admin" ? (
@@ -71,6 +83,23 @@ const Navigation = ({ profile }) => {
           </li>
         </ul>
       ) : null}
+=======
+
+        <li className="nav-item ps-3 pe-3" style={{ lineHeight: "26px" }}>
+          <a
+            href="/trash"
+            role="button"
+            className={cx([
+              "nav-link",
+              pathname === "/trash" ? "active" : "link-dark",
+            ])}
+          >
+            <AiOutlineDelete className="me-3" />
+            Papierkorb
+          </a>
+        </li>
+      </ul>
+>>>>>>> 9eaf250f30f86557cac0e23ac96fd17b909926cf
     </nav>
   );
 };

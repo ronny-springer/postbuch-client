@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
@@ -74,6 +75,27 @@ const Inbox = ({ config }) => {
           />
         </div>
       </main>
+=======
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { Navigation, InboxForm } from "../components";
+
+const Inbox = () => {
+  return (
+    <div
+      className="row overflow-hidden"
+      style={{ width: "100vw", height: "100vh" }}
+    >
+      <div className="col-2 pt-4">
+        <Navigation />
+      </div>
+      <div className="col">
+        <main>
+          <InboxForm />
+        </main>
+      </div>
+>>>>>>> 9eaf250f30f86557cac0e23ac96fd17b909926cf
     </div>
   );
 };

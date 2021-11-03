@@ -1,6 +1,7 @@
 import React, { StrictMode } from "react";
 import { hydrate, render } from "react-dom";
 import reportWebVitals from "./reportWebVitals";
+<<<<<<< HEAD
 
 import App from "./App";
 
@@ -11,6 +12,16 @@ const wayToRender = module.hot ? render : hydrate;
 wayToRender(
   <StrictMode>
     <App />
+=======
+import "./index.css";
+
+import Router from "./Router";
+
+const wayToRender = module.hot ? render : hydrate;
+wayToRender(
+  <StrictMode>
+    <Router />
+>>>>>>> 9eaf250f30f86557cac0e23ac96fd17b909926cf
   </StrictMode>,
   document.getElementById("root")
 );

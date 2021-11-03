@@ -1,31 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Router from "./Router";
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
-
   const defaultConfig = {
     groups: [],
     users: [],
     letter: [],
     postalItems: [],
-    profile: "reader",
+    profile: "admin",
   };
-  const [config, setConfig] = useState(defaultConfig);
 
-  useEffect(() => {
+  const [config] = useState(() => {
     try {
       const response = window.localStorage.getItem("config");
       const json = JSON.parse(response);
-      setConfig(json);
-      setLoading(false);
+
+      if (!json) return defaultConfig;
+
+      return json;
     } catch (exception) {
       console.error("error while reading config data", exception);
+      return defaultConfig;
     }
-  }, []);
-
-  if (loading) return null;
+  });
 
   return <Router config={config} />;
 };

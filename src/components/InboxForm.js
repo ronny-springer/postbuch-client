@@ -14,8 +14,8 @@ const InboxForm = ({ inbox = [], config = {}, onSave }) => {
     datum: new Date(Date.now()).toLocaleDateString("de-de"),
     absender: "",
     betreff: "",
-    type: letter[0].name,
-    recipient: groups[0].name,
+    type: letter.length && letter[0].name,
+    recipient: groups.length && groups[0].name,
     isDisabled: false,
   };
   const [inputFields, setInputFields] = useState(defaultValues);
@@ -110,7 +110,7 @@ const InboxForm = ({ inbox = [], config = {}, onSave }) => {
         </div>
       </div>
 
-      {letter.length && (
+      {letter.length ? (
         <div className="col-2">
           <div className="form-floating">
             <select
@@ -150,10 +150,10 @@ const InboxForm = ({ inbox = [], config = {}, onSave }) => {
             </label>
           </div>
         </div>
-      )}
+      ) : null}
 
-      <div className="col-2">
-        {(users.length || groups.length) && (
+      {users.length || groups.length ? (
+        <div className="col-2">
           <div className="d-flex">
             <span className="input-group-text">
               <div
@@ -242,8 +242,8 @@ const InboxForm = ({ inbox = [], config = {}, onSave }) => {
               </label>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      ) : null}
 
       <div className="col-1">
         <button
@@ -259,8 +259,8 @@ const InboxForm = ({ inbox = [], config = {}, onSave }) => {
               id: String(Date.now()),
               absender: "",
               betreff: "",
-              type: letter[0].name,
-              recipient: groups[0].name,
+              type: letter.length && letter[0].name,
+              recipient: groups.length && groups[0].name,
               counter: inputFields.counter + 1,
             });
           }}

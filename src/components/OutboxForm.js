@@ -25,9 +25,9 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
     counter: currentCounter,
     datum: new Date(Date.now()).toLocaleDateString("de-de"),
     empfänger: "",
-    type: letter[0].name,
     betreff: "",
-    sendung: "Standardbrief",
+    type: letter.length && letter[0].name,
+    sendung: postalItems.length && postalItems[0].name,
     preis: "",
     isDisabled: false,
   };
@@ -124,7 +124,7 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
         </div>
       </div>
 
-      {letter.length && (
+      {letter.length ? (
         <div className="col-2">
           <div className="form-floating">
             <select
@@ -164,9 +164,9 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
             </label>
           </div>
         </div>
-      )}
+      ) : null}
 
-      {postalItems.length && (
+      {postalItems.length ? (
         <div className="col-2">
           <div className="d-flex">
             <div className="form-floating" style={{ flexGrow: 1 }}>
@@ -210,7 +210,7 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
             </div>
           </div>
         </div>
-      )}
+      ) : null}
 
       <div className="col-1">
         <button
@@ -228,8 +228,9 @@ const OutboxForm = ({ outbox = [], config = [], onSave }) => {
               ...inputFields,
               id: String(Date.now()),
               empfänger: "",
-              type: letter[0].name,
-              sendung: postalItems[postalItems.length - 1].name,
+              type: letter.length && letter[0].name,
+              sendung:
+                postalItems.length && postalItems[postalItems.length - 1].name,
               preis: "",
               counter: inputFields.counter + 1,
             });

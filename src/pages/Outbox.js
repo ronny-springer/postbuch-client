@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
@@ -112,23 +111,6 @@ const Outbox = ({ config }) => {
           />
         </div>
       </main>
-=======
-import React from "react";
-import { Navigation } from "../components";
-
-const Outbox = () => {
-  return (
-    <div
-      className="row overflow-hidden"
-      style={{ width: "100vw", height: "100vh" }}
-    >
-      <div className="col-2 pt-4">
-        <Navigation />
-      </div>
-      <div className="col">
-        <main>Outbox</main>
-      </div>
->>>>>>> 9eaf250f30f86557cac0e23ac96fd17b909926cf
     </div>
   );
 };

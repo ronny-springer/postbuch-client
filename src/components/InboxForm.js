@@ -184,7 +184,7 @@ const InboxForm = ({ inbox = [], config = {}, onSave }) => {
                       "scale(.85) translateY(-.5rem) translateX(.15rem)",
                   }}
                 >
-                  {checkedUsers ? "Name" : "Amt"}
+                  {checkedUsers ? "Person" : "Amt"}
                 </label>
               </div>
             </span>
